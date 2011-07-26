@@ -24,7 +24,7 @@ After not maintaining this plugin for about two years I made it work on the late
 
 ### 1.0
 
-* Initial release.
+Initial release.
 
 ## Usage/syntax
 
