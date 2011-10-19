@@ -27,12 +27,12 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 /**
  * @package Sass
  * @author Roy Tomeij
- * @version 1.1
+ * @version 1.2
  */
 /*
 Plugin Name: Sass for Wordpress
 Plugin URI: http://www.roytomeij.com/
-Description: "Sass for Wordpress" enables you to use Sass (Syntactically Awesome StyleSheets, http://sass-lang.com/) in your Wordpress project.
+Description: "Sass for Wordpress" enables you to use Sass (Syntactically Awesome StyleSheets, http://sass-lang.com/) and Compass in your Wordpress project.
 Author: Roy Tomeij
 Version: 1.1
 Author URI: http://www.roytomeij.com/
@@ -44,6 +44,7 @@ function sass($path)
   $parts = explode('/', $path);
   $filename = str_replace(array('.sass', '.scss'), '.css', $parts[count($parts)-1]);
   $path = TEMPLATEPATH . '/' . $path;
+  $config_filename = TEMPLATEPATH . '/config.rb';
 
   if (!file_exists($path))
   {
@@ -51,11 +52,16 @@ function sass($path)
     return get_bloginfo('template_directory') . '/' . $filename;
   }
 
-  // If the CSS doesn't exist or is too old, convert the Sass.
+  // Create config.rb for Compass if it doesn't exist yet.
+  if (!file_exists($config_filename)) {
+    exec('compass config ' . escapeshellarg($config_filename) . ' --sass-dir=. --css-dir=.');
+  }
+
+  // If the CSS doesn't exist or is too old, compile.
   if (!file_exists(TEMPLATEPATH . '/' . $filename) || filemtime(TEMPLATEPATH . '/' . $filename) < filemtime($path))
   {
     @unlink($filename);
-    exec('sass ' . escapeshellarg($path) . ' ' . escapeshellarg(TEMPLATEPATH . '/' . $filename));
+    exec('compass compile ' . escapeshellarg($path));
   }
 
   return get_bloginfo('template_directory') . '/' . $filename;

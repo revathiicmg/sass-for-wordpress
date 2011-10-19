@@ -4,11 +4,11 @@
 
 ## What does it do?
 
-"Sass for Wordpress" enables you to use Sass ([Syntactically Awesome StyleSheets](http://sass-lang.com/)) in your Wordpress project. It has support for Sass and Scss.
+"Sass for Wordpress" enables you to use Sass ([Syntactically Awesome StyleSheets](http://sass-lang.com/)) and Compass in your Wordpress project. It has support for Sass and SCSS syntax.
 
 ## Installation
 
-First, you need to have the Sass gem installed on your server to use the plugin. Please have a look at the Sass website for [installation instructions for Sass](http://sass-lang.com/download.html).
+First, you need to have the Sass and Compass gems installed on your server to use the plugin. Please have a look at the Sass website for [installation instructions for Sass](http://sass-lang.com/download.html).
 
 Second, your PHP version needs to be 5+ and shouldn't run in safe mode. We need to use the exec() function to run the command line tool to transform Sass into CSS (don't worry, we escape malicious input).
 
@@ -17,6 +17,10 @@ If you're sure you have done the above, you are ready to go (syntax below)!
 Thanks to Marcus Cobde (https://github.com/leth) for his input.
 
 ## Changelog
+
+### 1.2
+
+Refactored the plugin to use `compass compile` instead of `sass`, so Compass can (and has to be) be used.
 
 ### 1.1
 
@@ -32,8 +36,4 @@ Simply refer to your Sass/Scss file by using the sass('filename') function. For 
 
 `<link rel="stylesheet" href="<?php echo sass('style.sass'); ?>" type="text/css" media="screen" />`
 
-This new version can handle sub-directories for your Sass, like:
-
-`<link rel="stylesheet" href="<?php echo sass('stylesheets/style.scss'); ?>" type="text/css" media="screen" />`
-
-The path should always be relative from your template directory. No matter the path, the generated CSS-file will always reside at `template_path/style.css`.
+The plugin expects your Sass files to always reside in the root of your theme directory.
