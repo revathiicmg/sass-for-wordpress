@@ -1,6 +1,10 @@
 # Sass for Wordpress
 
-"Sass for Wordpress" enables you to use Sass (Syntactically Awesome StyleSheets) in your Wordpress project.
+"Sass for Wordpress" enables you to use Sass (Syntactically Awesome StyleSheets) in your Wordpress project. I'm [Roy Tomeij](http://roytomeij.com/) by the way, and I write awesome Sass for [SliceCraft](http://www.slicecraft.com/).
+
+## WARNING
+
+This code hasn't been touched in about two years. There may be bugs thay may or may not be fixed anytime soon :)
 
 ## What does it do?
 
